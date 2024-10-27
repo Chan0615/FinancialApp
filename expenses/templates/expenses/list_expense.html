@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenses</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background-color: #fff;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        li a {
+            margin-left: 10px;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            text-decoration: none;
+        }
+        .edit-link {
+            background-color: #5cb85c;
+        }
+        .delete-link {
+            background-color: #d9534f;
+        }
+        .edit-link:hover {
+            background-color: #4cae4c;
+        }
+        .delete-link:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% block content %}
+        <h2>Expenses</h2>
+        <a href="{% url 'add_expense' %}" class="add-expense">Add Expense</a>
+        <ul>
+            {% for expense in expenses %}
+            <li>
+                <span>{{ expense.description }} - {{ expense.amount }}</span>
+                (<a href="{% url 'edit_expense' pk=expense.pk %}" class="edit-link">Edit</a> | 
+                <a href="{% url 'delete_expense' pk=expense.pk %}" class="delete-link">Delete</a>)
+            </li>
+            {% endfor %}
+        </ul>
+        {% endblock %}
+    </div>
+</body>
+</html>

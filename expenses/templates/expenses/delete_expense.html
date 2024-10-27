@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Expense</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            max-width: 300px;
+            margin: 50px auto;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin: 0;
+            padding: 0;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #d9534f; /* Bootstrap’s danger button color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c9302c;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    {% block content %}
+        <h2>Delete Expense</h2>
+        <form method="post">
+            {% csrf_token %}
+            <p>Are you sure you want to delete "{{ expense.description }}"?</p>
+            <button type="submit">Confirm</button>
+        </form>
+    {% endblock %}
+</div>
+</body>
+</html>
