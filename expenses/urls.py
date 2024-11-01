@@ -10,4 +10,5 @@ urlpatterns = [
     path("register/", views.register, name="register"),
     path("login/", LoginView.as_view(template_name="expenses/login.html"), name="login"),
     path("logout/", LogoutView.as_view(), name="logout"),
+    path('', views.home, name='home'),  # 定义了名为 'home' 的 URL 路由
 ]

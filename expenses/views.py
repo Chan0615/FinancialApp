@@ -53,3 +53,7 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, "expenses/register.html", {"form": form})
+
+
+def home(request):
+    return render(request, 'expenses/home.html')
