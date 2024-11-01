@@ -3,99 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
+    <title>注册</title>
     <style>
+        /* 页面整体布局和背景设置 */
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             height: 100vh;
             margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('data:image/jpeg;base64,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') no-repeat center center fixed; /* 背景图片 */
+            background-size: cover; /* 背景图片覆盖整个页面 */
         }
 
+        /* 注册表单容器样式 */
         .register-container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            width: 300px;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        .form-group input {
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            padding: 2rem;
+            border-radius: 8px; /* 圆角边框 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            max-width: 400px;
+            text-align: center; /* 内容居中对齐 */
         }
 
-        button {
+        /* 标题样式 */
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #333; /* 深灰色字体 */
+        }
+
+        /* 输入框样式 */
+        input[type="text"], input[type="password"], input[type="email"] {
             width: 100%;
-            padding: 10px;
-            background-color: #5cb85c;
-            color: white;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd; /* 边框颜色 */
+            border-radius: 5px; /* 圆角边框 */
+            font-size: 1rem;
+            box-sizing: border-box; /* 盒子模型设置 */
+        }
+
+        /* 按钮样式 */
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff; /* 按钮背景颜色 */
             border: none;
-            border-radius: 4px;
+            color: #fff; /* 按钮文字颜色 */
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px; /* 按钮圆角 */
             cursor: pointer;
+            transition: background-color 0.3s ease; /* 背景颜色渐变效果 */
         }
 
-        button:hover {
-            background-color: #4cae4c;
+        /* 按钮悬停效果 */
+        button[type="submit"]:hover {
+            background-color: #0056b3; /* 悬停时背景颜色 */
+        }
+
+        /* 登录链接样式 */
+        p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #555; /* 字体颜色 */
+        }
+
+        /* 链接颜色和样式 */
+        p a {
+            color: #007bff;
+            text-decoration: none; /* 去除下划线 */
+        }
+
+        /* 链接悬停效果 */
+        p a:hover {
+            text-decoration: underline; /* 悬停时加下划线 */
         }
     </style>
 </head>
 <body>
 <div class="register-container">
-    <h2>Register</h2>
+    <h2>注册</h2>
     <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-        </div>
-        <div class="form-group">
-            <label for="password1">Password:</label>
-            <input type="password" id="password1" name="password1" required>
-        </div>
-        <div class="form-group">
-            <label for="password2">Confirm Password:</label>
-            <input type="password" id="password2" name="password2" required>
-        </div>
-        <div class="form-group">
-            <label for="phone_number">Phone Number:</label>
-            <input type="text" id="phone_number" name="phone_number">
-        </div>
-        <div class="form-group">
-            <label for="birthday">Birthday:</label>
-            <input type="date" id="birthday" name="birthday">
-        </div>
-        <button type="submit">Register</button>
+        {{ form.as_p }}
+        <button type="submit">注册</button>
     </form>
+    <p>已有账号？<a href="{% url 'login' %}">登录</a></p> <!-- 链接到登录页面 -->
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const password1 = document.getElementById('password1');
-        const password2 = document.getElementById('password2');
-        const form = document.querySelector('form');
-
-        form.addEventListener('submit', function (event) {
-            if (password1.value !== password2.value) {
-                alert('Passwords do not match');
-                event.preventDefault();
-            }
-        });
-    });
-</script>
 </body>
 </html>

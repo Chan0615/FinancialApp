@@ -138,3 +138,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = 'home'  # 登录后重定向到首页
+LOGOUT_REDIRECT_URL = 'login'  # 注销后重定向到登录页面

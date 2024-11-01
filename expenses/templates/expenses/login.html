@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录</title>
+    <style>
+        /* 基本页面样式 */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background-image: url('data:image/jpeg;base64,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'); /* 替换为实际图片路径 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+        }
+
+        /* 表单容器样式 */
+        .login-container {
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        /* 标题样式 */
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        /* 输入框样式 */
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        /* 按钮样式 */
+        button[type="submit"] {
+            width: 100%;
+            padding: 0.8rem;
+            background-color: #007bff;
+            border: none;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        /* 注册链接样式 */
+        p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #555;
+        }
+
+        p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        p a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="login-container">
+    <h2>登录</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">登录</button>
+    </form>
+    <p>还没有账号？<a href="{% url 'register' %}">注册</a></p>
+</div>
+</body>
+</html>
