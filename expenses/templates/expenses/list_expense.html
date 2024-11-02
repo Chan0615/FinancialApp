@@ -5,118 +5,67 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>支出管理</title>
     <style>
-        /* 重置默认的边距和填充 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f0f2f5;
+            background-color: #f4f6f9;
             color: #333;
             display: flex;
             justify-content: center;
             padding: 20px;
         }
-
         .container {
             background-color: #fff;
             max-width: 800px;
             width: 100%;
             margin-top: 50px;
-            padding: 20px;
+            padding: 25px;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-
         h2 {
             color: #4a4a4a;
             margin-bottom: 20px;
             font-size: 1.5em;
+            border-bottom: 2px solid #e1e4e8;
+            padding-bottom: 10px;
         }
-
         a {
             color: #007bff;
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
-
-        /* 用户信息部分 */
+        
+        /* 用户信息区 */
         .user-info {
+            display: flex;
+            flex-direction: column;
             padding: 15px;
             background-color: #f9fafb;
             border-radius: 8px;
             margin-bottom: 20px;
             border: 1px solid #e1e4e8;
+            font-size: 0.95em;
         }
-
         .user-info p {
             margin: 5px 0;
-            font-size: 0.9em;
         }
-
         .user-info a {
             color: #ff5a5f;
             font-weight: bold;
+            margin-top: 10px;
         }
-
         .user-info a:hover {
             color: #ff2a2a;
         }
 
-        /* 支出列表部分 */
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            background-color: #f9fafb;
-            border: 1px solid #e1e4e8;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        li span {
-            font-size: 1em;
-            color: #333;
-        }
-
-        .action-links a {
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-size: 0.9em;
-            text-decoration: none;
-            margin-left: 5px;
-        }
-
-        .edit-link {
-            background-color: #28a745;
-        }
-
-        .delete-link {
-            background-color: #dc3545;
-        }
-
-        .edit-link:hover {
-            background-color: #218838;
-        }
-
-        .delete-link:hover {
-            background-color: #c82333;
-        }
-
-        /* 添加支出按钮 */
+        /* 支出记录标题和操作按钮 */
         .add-expense {
             display: inline-block;
             padding: 10px 15px;
@@ -128,36 +77,96 @@
             font-weight: bold;
             transition: background-color 0.3s ease;
         }
-
         .add-expense:hover {
             background-color: #0056b3;
+        }
+
+        /* 支出记录表头和内容 */
+        .expense-header, .expense-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 8px;
+            background-color: #f9fafb;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        .expense-header {
+            font-weight: bold;
+            background-color: #e9ecef;
+        }
+        .expense-header div, .expense-item div {
+            flex: 1;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        /* 操作按钮 */
+        .action-links {
+            display: flex;
+            justify-content: center;
+        }
+        .action-links a {
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            text-decoration: none;
+            margin: 0 5px;
+            transition: background-color 0.3s ease;
+        }
+        .edit-link {
+            background-color: #28a745;
+        }
+        .delete-link {
+            background-color: #dc3545;
+        }
+        .edit-link:hover {
+            background-color: #218838;
+        }
+        .delete-link:hover {
+            background-color: #c82333;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <!-- 用户信息部分 -->
-    <div class="user-info">
-        <p><strong>用户名：</strong> {{ user.username }}</p>
-        <p><strong>注册日期：</strong> {{ user.registration_date }}</p>
-        <p><strong>最后登录：</strong> {{ user.last_login }}</p>
-        <a href="{% url 'logout' %}">切换用户</a>
-    </div>
+    <div class="container">
+        <!-- 用户信息区域 -->
+        <div class="user-info">
+            <p><strong>用户名：</strong> {{ user.username }}</p>
+            <p><strong>注册日期：</strong> {{ user.registration_date }}</p>
+            <p><strong>最后登录：</strong> {{ user.last_login }}</p>
+            <a href="{% url 'logout' %}">切换用户</a>
+        </div>
 
-    <!-- 支出管理部分 -->
-    <h2>支出记录</h2>
-    <a href="{% url 'add_expense' %}" class="add-expense">添加支出</a>
-    <ul>
-        {% for expense in expenses %}
-            <li>
-                <span>{{ expense.description }} - {{ expense.amount }}</span>
+        <!-- 支出记录标题和添加按钮 -->
+        <h2>支出记录</h2>
+        <a href="{% url 'add_expense' %}" class="add-expense">添加支出</a>
+
+        <!-- 表头 -->
+        <div class="expense-header">
+            <div>使用人</div>
+            <div>金额</div>
+            <div>添加时间</div>
+            <div>用途</div>
+            <div>操作</div>
+        </div>
+
+        <!-- 支出记录列表 -->
+        <ul>
+            {% for expense in expenses %}
+            <li class="expense-item">
+                <div>{{ expense.username }}</div>
+                <div>{{ expense.amount }}</div>
+                <div>{{ expense.added_time }}</div>
+                <div>{{ expense.purpose }}</div>
                 <div class="action-links">
                     <a href="{% url 'edit_expense' pk=expense.pk %}" class="edit-link">编辑</a>
                     <a href="{% url 'delete_expense' pk=expense.pk %}" class="delete-link">删除</a>
                 </div>
             </li>
-        {% endfor %}
-    </ul>
-</div>
+            {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>
